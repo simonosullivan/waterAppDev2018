@@ -5,7 +5,7 @@
              x:Class="waterAppDev2018.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
+        <!-- Hello world -->
         <Label Text="Welcome to Xamarin.Forms!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
