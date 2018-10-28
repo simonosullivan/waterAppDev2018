@@ -4,11 +4,11 @@
              xmlns:local="clr-namespace:waterAppDev2018"
              x:Class="waterAppDev2018.MainPage">
 
-    <StackLayout>
-        <!-- Hello world -->
-        <Label Text="hey!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+        <Button x:Name="AddQuantityButton" 
+                Text="Quantity" 
+                Clicked="AddQuantityButton_Clicked"/>
+        
     </StackLayout>
 
 </ContentPage>

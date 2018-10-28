@@ -13,5 +13,10 @@ namespace waterAppDev2018
         {
             InitializeComponent();
         }
+
+        private void AddQuantityButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddWaterQuantity());
+        }
     }
 }
