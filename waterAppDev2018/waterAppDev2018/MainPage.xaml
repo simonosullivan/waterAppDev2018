@@ -4,7 +4,22 @@
              xmlns:local="clr-namespace:waterAppDev2018"
              x:Class="waterAppDev2018.MainPage">
 
-    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Drink-Up"
+                     Priority="0"
+                     Order="Primary"/>
+        <ToolbarItem x:Name="Settings"
+                     Text="Settings"
+                     Priority="1"
+                     Order="Primary"
+                     
+                     Clicked="Settings_Clicked"/>
+        <ToolbarItem Text="Colour"
+                     Priority="2"
+                     Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+       <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+        <Image x:Name="WaterGlass" Aspect="AspectFit"/>
         <Button x:Name="AddQuantityButton" 
                 Text="Quantity" 
                 Clicked="AddQuantityButton_Clicked"/>
