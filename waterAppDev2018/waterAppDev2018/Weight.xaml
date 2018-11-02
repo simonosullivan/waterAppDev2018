@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="waterAppDev2018.Weight">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+            <Label Text="Weight" FontSize="Large"/>
+            <Picker x:Name="WeightPicker" 
+                    SelectedIndexChanged="WeightPicker_SelectedIndexChanged"/>
+            <Button x:Name="SubmitButton" Text="Submit" TextColor="Green" Clicked="SubmitButton_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

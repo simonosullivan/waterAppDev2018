@@ -16,5 +16,21 @@ namespace waterAppDev2018
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void addMlsButton_Clicked(object sender, EventArgs e)
+        {
+            AddWater();
+            Navigation.PushAsync(new MainPage());
+            
+        }
+
+        public int AddWater()
+        {
+            int drunk;//= int.Parse(mlsEntry.Text);
+            drunk = Convert.ToInt32(mlsEntry.Text);                                    
+            return drunk;
+        }
+
+        
+    }
 }

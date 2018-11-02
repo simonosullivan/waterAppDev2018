@@ -27,7 +27,8 @@ namespace waterAppDev2018
 
         private void MeasurementPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MeasurementSystem change = new MeasurementSystem(MeasurementPicker.SelectedIndex);
+            MeasurementSystem change = new MeasurementSystem();
+            change.MeasureSystem(MeasurementPicker.SelectedIndex);
         }
 
         

@@ -20,6 +20,18 @@ namespace waterAppDev2018
             Navigation.PushAsync(new AddWaterQuantity());
         }
 
+        private void DrinkMeter()
+        {
+            MeasurementSystem target = new MeasurementSystem();
+            int targetAmount = target.DrinkAmount();
+            targetWaterIntake.Text = "Target : " + targetAmount + " mls";
+
+            AddWaterQuantity water = new AddWaterQuantity();
+            int drank = water.AddWater();
+            drinkMeter.Text = "Drunk : " + drank + " mls";
+
+        }
+
         private void SetupImages()
         {
             var assembly = typeof(MainPage);
@@ -29,6 +41,11 @@ namespace waterAppDev2018
         private void Settings_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Settings());
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Weight());
         }
     }
 }

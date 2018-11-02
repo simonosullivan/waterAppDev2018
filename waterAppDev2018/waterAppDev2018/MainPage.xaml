@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:waterAppDev2018"
              x:Class="waterAppDev2018.MainPage">
-
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Drink-Up"
                      Priority="0"
-                     Order="Primary"/>
+                     Order="Primary"
+                     
+                     Clicked="ToolbarItem_Clicked"/>
         <ToolbarItem x:Name="Settings"
                      Text="Settings"
                      Priority="1"
@@ -19,11 +21,16 @@
                      Order="Secondary"/>
     </ContentPage.ToolbarItems>
        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
-        <Image x:Name="WaterGlass" Aspect="AspectFit"/>
-        <Button x:Name="AddQuantityButton" 
-                Text="Quantity" 
-                Clicked="AddQuantityButton_Clicked"/>
         
+            <Label x:Name="targetWaterIntake" Text="Target :" FontSize="Large"/>
+        <Label x:Name="drinkMeter" Text="Have you drank water yet ?"/>
+
+
+            <Image x:Name="WaterGlass" Aspect="AspectFit"/>
+            <Button x:Name="AddQuantityButton" 
+                    Text="Quantity" 
+                    Clicked="AddQuantityButton_Clicked"/>
+
     </StackLayout>
 
 </ContentPage>

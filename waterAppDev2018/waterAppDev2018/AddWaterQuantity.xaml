@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Entry x:Name="mlsEntry" Placeholder="mls"/>
-            <Button Text="add mls" x:Name="addMlsButton"/>
+            <Button Text="add mls" x:Name="addMlsButton" Clicked="addMlsButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
