@@ -31,6 +31,16 @@ namespace waterAppDev2018
             change.MeasureSystem(MeasurementPicker.SelectedIndex);
         }
 
-        
+        private void WakeTime_BindingContextChanged(object sender, EventArgs e)
+        {
+            MeasurementSystem change = new MeasurementSystem();
+            change.WakeUpTime(sender);
+        }
+
+        private void SleepTime_BindingContextChanged(object sender, EventArgs e)
+        {
+            MeasurementSystem change = new MeasurementSystem();
+            change.SleepTime(sender);
+        }
     }
 }

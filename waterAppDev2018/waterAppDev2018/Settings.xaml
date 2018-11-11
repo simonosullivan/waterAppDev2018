@@ -11,6 +11,14 @@
                 <Picker x:Name="MeasurementPicker"
                         SelectedIndexChanged="MeasurementPicker_SelectedIndexChanged"/>
             </StackLayout>
+            
+            <Label Text="Wake/Sleep Time" FontSize="Medium"/>
+            <Label Text="Wake Up Time"/>
+            <TimePicker x:Name="wakeTime"
+                            BindingContextChanged="WakeTime_BindingContextChanged"/>
+            <Label Text="Sleep Time"/>
+            <TimePicker x:Name="SleepTime"
+                        BindingContextChanged="SleepTime_BindingContextChanged"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

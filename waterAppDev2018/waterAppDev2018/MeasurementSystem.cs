@@ -8,6 +8,11 @@ namespace waterAppDev2018
     {
         private int selectedIndex;
         private int weight;
+        private int wakeUpTime;
+        private int sleepTime;
+        private int awake;
+        private int amountToDrink;
+        private int varTargetLine;
 
         public MeasurementSystem() {}
 
@@ -19,6 +24,16 @@ namespace waterAppDev2018
         public void Weight(int weight)
         {
             this.weight = weight;
+        }
+
+        public void WakeUpTime(object sender)
+        {
+            this.wakeUpTime = (int)(sender);
+        }
+
+        public void SleepTime(object sender)
+        {
+            this.sleepTime = (int)(sender);
         }
 
         public int DrinkAmount()
@@ -35,7 +50,15 @@ namespace waterAppDev2018
             {
                 amountTarget = 2100;
             }
+            this.amountToDrink = amountTarget;
             return amountTarget;
+        }
+
+        public int TargetLine()
+        {
+            awake = sleepTime - wakeUpTime;
+            this.varTargetLine = amountToDrink / awake;
+            return this.varTargetLine;
         }
 
 

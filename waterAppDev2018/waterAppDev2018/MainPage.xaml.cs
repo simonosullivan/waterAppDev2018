@@ -26,6 +26,9 @@ namespace waterAppDev2018
             int targetAmount = target.DrinkAmount();
             targetWaterIntake.Text = "Target : " + targetAmount + " mls";
 
+            int guideDrank = target.TargetLine();
+            guide.Text = "Guide amount drunk : " +guideDrank+" mls";
+
             AddWaterQuantity water = new AddWaterQuantity();
             int drank = water.AddWater();
             drinkMeter.Text = "Drunk : " + drank + " mls";
@@ -46,6 +49,11 @@ namespace waterAppDev2018
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Weight());
+        }
+
+        private void ToolbarItem_Clicked_1(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Modifications());
         }
     }
 }

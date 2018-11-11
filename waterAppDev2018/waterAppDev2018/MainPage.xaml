@@ -16,14 +16,17 @@
                      Order="Primary"
                      
                      Clicked="Settings_Clicked"/>
-        <ToolbarItem Text="Colour"
+        <ToolbarItem Text="Modifications"
                      Priority="2"
-                     Order="Secondary"/>
+                     Order="Primary"
+                     
+                     Clicked="ToolbarItem_Clicked_1"/>
     </ContentPage.ToolbarItems>
        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
         
             <Label x:Name="targetWaterIntake" Text="Target :" FontSize="Large"/>
-        <Label x:Name="drinkMeter" Text="Have you drank water yet ?"/>
+        <Label x:Name="guide" Text="Guide amount drunk : " FontSize="Micro"/>
+        <Label x:Name="drinkMeter" Text="Have you drank water yet ?" FontSize="Medium"/>
 
 
             <Image x:Name="WaterGlass" Aspect="AspectFit"/>
