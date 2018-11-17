@@ -38,11 +38,12 @@ namespace waterAppDev2018
 
         public int DrinkAmount()
         {
-            int amountTarget=0;
-            if(this.weight >= 90)
+            int amountTarget;
+            if (this.weight >= 90)
             {
                 amountTarget = 2800;
-            }else if(this.weight >= 65)
+            }
+            else if (this.weight >= 65)
             {
                 amountTarget = 2400;
             }
@@ -50,7 +51,9 @@ namespace waterAppDev2018
             {
                 amountTarget = 2100;
             }
-            this.amountToDrink = amountTarget;
+
+
+            //DrinkMeter();
             return amountTarget;
         }
 
