@@ -1,0 +1,6 @@
+﻿[
+	{ 
+		"Weight":"",
+		"MeasurementSystem":""
+	}
+]

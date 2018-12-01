@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using waterAppDev2018.Model;
 using Xamarin.Forms;
 
 namespace waterAppDev2018
@@ -12,12 +14,27 @@ namespace waterAppDev2018
         int totalDrank = 0;
         int amountTarget;
 
+
         public MainPage()
         {
             InitializeComponent();
             //SetupImages();
-            WeightPickerOptions();
+            //WeightPickerOptions();
+            DrinkMeter();
             
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            {
+                conn.CreateTable<DbClass>();
+                var readDB = conn.Table<DbClass>().ToList();
+
+                
+            }
         }
 
         private void AddQuantityButton_Clicked(object sender, EventArgs e)
@@ -98,28 +115,9 @@ namespace waterAppDev2018
             weight.Weight(WeightPicker.SelectedIndex);
             DrinkMeter();
             
-        //    int weight = WeightPicker.SelectedIndex;
             
-        //    if (weight >= 90)
-        //    {
-        //        amountTarget = 2800;
-        //    }
-        //    else if (weight >= 65)
-        //    {
-        //        amountTarget = 2400;
-        //    }
-        //    else
-        //    {
-        //        amountTarget = 2100;
-        //    }
-            
-            
-        //    DrinkMeter();
         }
 
-        //private void SubmitButton_Clicked(object sender, EventArgs e)
-        //{
-
-        //}
+        
     }
 }

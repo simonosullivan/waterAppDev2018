@@ -7,6 +7,12 @@
             <Label Text="Settings"/>
             
             <StackLayout Orientation="Horizontal" >
+                <Label Text="Weight" FontSize="Large"/>
+                <Picker x:Name="WeightPicker" 
+                    SelectedIndexChanged="WeightPicker_SelectedIndexChanged"/>
+                
+                
+                
                 <Label Text="Measurement System"/>
                 <Picker x:Name="MeasurementPicker"
                         SelectedIndexChanged="MeasurementPicker_SelectedIndexChanged"/>
@@ -19,6 +25,8 @@
             <Label Text="Sleep Time"/>
             <TimePicker x:Name="SleepTime"
                         BindingContextChanged="SleepTime_BindingContextChanged"/>
+
+            <Button x:Name="SubmitButton" Text="Submit" TextColor="Green" Clicked="SubmitButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

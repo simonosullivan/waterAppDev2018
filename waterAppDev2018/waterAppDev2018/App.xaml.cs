@@ -7,11 +7,21 @@ namespace waterAppDev2018
 {
     public partial class App : Application
     {
+        public static string DatabaseLocation = string.Empty;
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage (new MainPage());
+            MainPage = new NavigationPage (new Settings());
+        }
+
+        public App(string databaseLocation)
+        {
+            InitializeComponent();
+
+            MainPage = new NavigationPage(new Settings());
+
+            DatabaseLocation = databaseLocation;
         }
 
         protected override void OnStart()

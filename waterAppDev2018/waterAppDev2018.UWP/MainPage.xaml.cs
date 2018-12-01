@@ -21,7 +21,11 @@ namespace waterAppDev2018.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new waterAppDev2018.App());
+            string dbName = "Drink-Up_db.sqlite";
+            string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData);
+            string fullPath = Path.Combine(folderPath, dbName);
+
+            LoadApplication(new waterAppDev2018.App(fullPath));
         }
     }
 }

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using waterAppDev2018.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +14,7 @@ namespace waterAppDev2018
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Weight : ContentPage
     {
+        public int pickedWeight;
         public Weight()
         {
             InitializeComponent();
@@ -38,13 +41,28 @@ namespace waterAppDev2018
 
         private void WeightPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MeasurementSystem weight = new MeasurementSystem();
-            weight.Weight(WeightPicker.SelectedIndex);
+            //MeasurementSystem weight = new MeasurementSystem();
+            //weight.Weight(WeightPicker.SelectedIndex);
+
+            pickedWeight = (int)(WeightPicker.SelectedIndex);
+
+
         }
 
         private void SubmitButton_Clicked(object sender, EventArgs e)
         {
+            DbClass dbClass = new DbClass()
+            {
+                DbWeight = pickedWeight
+            };
+
+            SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+            conn.CreateTable<DbClass>();
+            conn.Insert(dbClass);
+            conn.Close();
+           
             Navigation.PushAsync(new MainPage());
+
         }
     }
 }

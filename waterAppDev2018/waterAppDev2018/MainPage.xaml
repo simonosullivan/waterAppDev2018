@@ -22,6 +22,8 @@
                      
                      Clicked="ToolbarItem_Clicked_1"/>
     </ContentPage.ToolbarItems>
+    
+    
        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
         
             <Label x:Name="targetWaterIntake" Text="Target :" FontSize="Large"/>
@@ -42,7 +44,7 @@
         <Picker x:Name="WeightPicker" 
                     SelectedIndexChanged="WeightPicker_SelectedIndexChanged"/>
         <!--<Button x:Name="SubmitButton" Text="Submit" TextColor="Green" Clicked="SubmitButton_Clicked"/>-->
-
+        <Label x:Name="lblShowJsonOnDiffPage" Text="json" />
 
     </StackLayout>
 

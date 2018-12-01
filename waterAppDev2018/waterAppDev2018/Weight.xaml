@@ -8,7 +8,7 @@
             <Picker x:Name="WeightPicker" 
                     SelectedIndexChanged="WeightPicker_SelectedIndexChanged"/>
             <Button x:Name="SubmitButton" Text="Submit" TextColor="Green" Clicked="SubmitButton_Clicked"/>
-
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
