@@ -1,6 +1,0 @@
-﻿[
-	{ 
-		"Weight":"",
-		"MeasurementSystem":""
-	}
-]

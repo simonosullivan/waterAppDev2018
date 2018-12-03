@@ -1,7 +1,10 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using waterAppDev2018.Model;
@@ -13,29 +16,104 @@ namespace waterAppDev2018
     {
         int totalDrank = 0;
         int amountTarget;
+        private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
+        List<JsonToObject> jsonToObjects;
 
 
         public MainPage()
         {
             InitializeComponent();
+            ReadFromJson();
             //SetupImages();
-            //WeightPickerOptions();
             DrinkMeter();
             
+
         }
 
-        protected override void OnAppearing()
+        private void ReadFromJson()
         {
-            base.OnAppearing();
-
-            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            try
             {
-                conn.CreateTable<DbClass>();
-                var readDB = conn.Table<DbClass>().ToList();
+                // write the list to a local file
+                string path = Environment.GetFolderPath(
+                    Environment.SpecialFolder.LocalApplicationData);
+                string filename = Path.Combine(path, JSON_FILENAME);
+                //string jsonText = File.ReadLines(filename, false).Last();
+                // use a stream reader to read the text out to file
+                using (var streamReader = new StreamReader(filename, false))
+                {
+                    string jsonText = streamReader.ReadToEnd();
+                    jsonToObjects = JsonConvert.DeserializeObject<List<JsonToObject>>(jsonText);
 
-                
+                   
+                }
+                JsonToObject json = new JsonToObject();
+                foreach (var obj in jsonToObjects)
+                {
+                    
+                    json.Weight = obj.Weight;
+                    json.WakeUpTime = obj.WakeUpTime;
+                    json.SleepTime = obj.SleepTime;
+                    json.MeasureSys = obj.MeasureSys;
+                }
+
+                int amountTarget = json.DrinkAmount();
+                targetWaterIntake.Text = "Target : " + amountTarget + " mls";
+
+
+
+                //dogs = JsonConvert.DeserializeObject<List<Dogs>>(jsonText);
+
+            }
+            catch
+            {
+                // on error reading local file, use default file
+
+                // need a link to the assembly (dll) to get the file
+                var assembly = IntrospectionExtensions.GetTypeInfo(typeof(MainPage)).Assembly;
+                // create a stream to access the file
+                Stream stream = assembly.GetManifestResourceStream(
+                                "waterAppDev2018.Model.LocalStorage.txt");
+                using(var reader = new StreamReader(stream))
+                {
+                    string jsonText = reader.ReadToEnd();
+                    jsonToObjects = JsonConvert.DeserializeObject<List<JsonToObject>>(jsonText);
+                }
+
+                JsonToObject json = new JsonToObject();
+                foreach (var obj in jsonToObjects)
+                {
+
+                    json.Weight = obj.Weight;
+                    json.WakeUpTime = obj.WakeUpTime;
+                    json.SleepTime = obj.SleepTime;
+                    json.MeasureSys = obj.MeasureSys;
+                }
+
+                int amountTarget = json.DrinkAmount();
+                targetWaterIntake.Text = "Target : " + amountTarget + " mls";
             }
         }
+
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
+
+
+
+        //    using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+        //    {
+
+        //        conn.CreateTable<DbClass>();
+        //        var readDB = conn.Table<DbClass>().ToList();
+        //        var weight = readDB[readDB.ToList().Count- 1];
+
+        //        Console.WriteLine(weight.ToString());
+
+
+        //    }
+
+        //}
 
         private void AddQuantityButton_Clicked(object sender, EventArgs e)
         {
@@ -92,32 +170,9 @@ namespace waterAppDev2018
             return drunk;
         }
 
-        private void WeightPickerOptions()
-        {
-            WeightPicker.ItemsSource = new int[]
-            {1,2,3,4,5,6,7,8,9,10,
-                11,12,13,14,15,16,17,18,19,20,
-                21,22,23,24,25,26,27,28,29,30,
-                31,32,33,34,35,36,37,38,39,
-                40,41,42,43,44,45,46,47,48,49,50,
-                51,52,53,54,55,56,57,58,59,60,
-                61,62,63,64,65,66,67,68,69,70,
-                71,72,73,74,75,76,77,78,79,80,
-                81,82,83,84,85,86,87,88,89,90,
-                91,92,93,94,95,96,97,98,99,100,
-                101,102,103,104,105,106,107,108,109,110,
-                111,112,113,114,115,116,117,118,119,120};
-        }
 
-        private void WeightPicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MeasurementSystem weight = new MeasurementSystem();
-            weight.Weight(WeightPicker.SelectedIndex);
-            DrinkMeter();
-            
-            
-        }
 
-        
+
+
     }
 }

@@ -22,6 +22,14 @@
                      
                      Clicked="ToolbarItem_Clicked_1"/>
     </ContentPage.ToolbarItems>
+
+    <!--<ListView x:Name="listviewDB">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding DbWeight}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
     
     
        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
@@ -31,20 +39,17 @@
         <Label x:Name="drinkMeter" Text="Have you drank water yet ?" FontSize="Medium"/>
 
 
-            <!--<Image x:Name="WaterGlass" Aspect="AspectFit"/>-->
+            <Image x:Name="WaterGlass" Aspect="AspectFit"/>
 
         <Entry x:Name="mlsEntry" Placeholder="mls"/>
         <Button Text="add mls" x:Name="addMlsButton" Clicked="addMlsButton_Clicked"/>
            
-        <!--<Button x:Name="AddQuantityButton" 
+        <Button x:Name="AddQuantityButton" 
                     Text="Quantity" 
-                    Clicked="AddQuantityButton_Clicked"/>-->
+                    Clicked="AddQuantityButton_Clicked"/>
 
-        <Label Text="Weight" FontSize="Large"/>
-        <Picker x:Name="WeightPicker" 
-                    SelectedIndexChanged="WeightPicker_SelectedIndexChanged"/>
-        <!--<Button x:Name="SubmitButton" Text="Submit" TextColor="Green" Clicked="SubmitButton_Clicked"/>-->
-        <Label x:Name="lblShowJsonOnDiffPage" Text="json" />
+        
+        <Label x:Name="lblShow" Text="json" />
 
     </StackLayout>
 

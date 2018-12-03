@@ -1,0 +1,14 @@
+﻿[
+	{ 
+		"Weight":"75"
+	},
+	{ 
+		"WakeUp":"7"
+	},
+	{ 
+		"Sleep":"23"
+	},
+	{ 
+		"MeasureSystem":"Metric"
+	}
+]

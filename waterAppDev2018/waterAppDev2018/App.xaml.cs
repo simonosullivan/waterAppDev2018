@@ -12,14 +12,14 @@ namespace waterAppDev2018
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage (new Settings());
+            MainPage = new NavigationPage (new MainPage());
         }
 
         public App(string databaseLocation)
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Settings());
+            MainPage = new NavigationPage(new MainPage());
 
             DatabaseLocation = databaseLocation;
         }

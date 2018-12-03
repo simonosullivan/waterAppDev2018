@@ -82,30 +82,30 @@ namespace waterAppDev2018
 
         private void WeightPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pickedWeight = (int)(WeightPicker.SelectedIndex);
+            pickedWeight = (int)(WeightPicker.SelectedIndex)+1;
         }
 
         private void SubmitButton_Clicked(object sender, EventArgs e)
         {
-            DbClass dbClass = new DbClass()
-            {
-                DbWeight = pickedWeight,
-                DbMeasureSys = measureSys,
-                DbWakeUp = wakeUptime,
-                DbBedTime = bedTime
-            };
+        //    DbClass dbClass = new DbClass()
+        //    {
+        //        DbWeight = pickedWeight
+        //        //DbMeasureSys = measureSys,
+        //        //DbWakeUp = wakeUptime,
+        //        //DbBedTime = bedTime
+        //    };
 
-            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-            {
-                conn.CreateTable<DbClass>();
-                int rows = conn.Insert(dbClass);
+        //    using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+        //    {
+        //        conn.CreateTable<DbClass>();
+        //        int rows = conn.Insert(dbClass);
 
 
-                if (rows > 0)
-                DisplayAlert("Success", "Succesfully saved inputs", "Ok");
-                else
-                DisplayAlert("Failed", "Failed to save inputs", "Ok");
-            }
+        //        if (rows > 0)
+        //            DisplayAlert("Success", "Succesfully saved inputs", "Ok");
+        //        else
+        //            DisplayAlert("Failed", "Failed to save inputs", "Ok");
+        //    }
 
             Navigation.PushAsync(new MainPage());
 
