@@ -11,10 +11,12 @@
 
   <ItemGroup>
     <None Remove="Assets\WaterGlass.jpg" />
+    <None Remove="Model\LocalStorage.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\Images\WaterGlass.jpg" />
+    <EmbeddedResource Include="Model\LocalStorage.txt" />
   </ItemGroup>
 
   <ItemGroup>

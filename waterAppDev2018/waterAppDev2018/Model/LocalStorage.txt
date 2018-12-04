@@ -1,14 +1,8 @@
 ﻿[
 	{ 
-		"Weight":"75"
-	},
-	{ 
-		"WakeUp":"7"
-	},
-	{ 
-		"Sleep":"23"
-	},
-	{ 
-		"MeasureSystem":"Metric"
+	"Weight":"75",
+	"WakeUpTime":"7",
+	"SleepTime":"23",
+	"MeasureSys":"Metric"
 	}
 ]

@@ -13,7 +13,9 @@ namespace waterAppDev2018
 
         public JsonToObject()
         {
-                
+            JsonToObject j = new JsonToObject(this.Weight, this.WakeUpTime,
+                this.SleepTime, this.MeasureSys);
+         
         }
 
         public JsonToObject(int weight, int wakeUpTime, int sleepTime, string measureSys)
@@ -24,14 +26,14 @@ namespace waterAppDev2018
             this.MeasureSys = measureSys;
         }
 
-        public int DrinkAmount()
+        public int DrinkAmount(int weight)
         {
             int amountTarget;
-            if (this.Weight >= 90)
+            if (weight >= 90)
             {
                 amountTarget = 2800;
             }
-            else if (this.Weight >= 65)
+            else if (weight >= 65)
             {
                 amountTarget = 2400;
             }

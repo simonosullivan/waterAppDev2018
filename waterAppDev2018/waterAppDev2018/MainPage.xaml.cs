@@ -25,45 +25,38 @@ namespace waterAppDev2018
             InitializeComponent();
             ReadFromJson();
             //SetupImages();
-            DrinkMeter();
+            //DrinkMeter();
             
 
         }
 
         private void ReadFromJson()
         {
-            try
-            {
-                // write the list to a local file
+            try { 
+                // Read the list from a local file
                 string path = Environment.GetFolderPath(
                     Environment.SpecialFolder.LocalApplicationData);
                 string filename = Path.Combine(path, JSON_FILENAME);
-                //string jsonText = File.ReadLines(filename, false).Last();
+            
                 // use a stream reader to read the text out to file
                 using (var streamReader = new StreamReader(filename, false))
                 {
                     string jsonText = streamReader.ReadToEnd();
                     jsonToObjects = JsonConvert.DeserializeObject<List<JsonToObject>>(jsonText);
-
-                   
                 }
-                JsonToObject json = new JsonToObject();
+                JsonToObject objs = new JsonToObject();
                 foreach (var obj in jsonToObjects)
                 {
-                    
-                    json.Weight = obj.Weight;
-                    json.WakeUpTime = obj.WakeUpTime;
-                    json.SleepTime = obj.SleepTime;
-                    json.MeasureSys = obj.MeasureSys;
+
+                    objs.Weight = obj.Weight;
+                    int amountTarget = objs.DrinkAmount(objs.Weight);
+                    targetWaterIntake.Text = "Target : " + amountTarget + " mls";
+                    objs.WakeUpTime = obj.WakeUpTime;
+                    objs.SleepTime = obj.SleepTime;
+                    objs.MeasureSys = obj.MeasureSys;
                 }
 
-                int amountTarget = json.DrinkAmount();
-                targetWaterIntake.Text = "Target : " + amountTarget + " mls";
-
-
-
-                //dogs = JsonConvert.DeserializeObject<List<Dogs>>(jsonText);
-
+                
             }
             catch
             {
@@ -74,7 +67,7 @@ namespace waterAppDev2018
                 // create a stream to access the file
                 Stream stream = assembly.GetManifestResourceStream(
                                 "waterAppDev2018.Model.LocalStorage.txt");
-                using(var reader = new StreamReader(stream))
+                using (var reader = new StreamReader(stream))
                 {
                     string jsonText = reader.ReadToEnd();
                     jsonToObjects = JsonConvert.DeserializeObject<List<JsonToObject>>(jsonText);
@@ -82,17 +75,16 @@ namespace waterAppDev2018
 
                 JsonToObject json = new JsonToObject();
                 foreach (var obj in jsonToObjects)
-                {
-
+                { 
                     json.Weight = obj.Weight;
+                    int amountTarget = json.DrinkAmount(json.Weight);
+                    targetWaterIntake.Text = "Target : " + amountTarget + " mls";
                     json.WakeUpTime = obj.WakeUpTime;
                     json.SleepTime = obj.SleepTime;
                     json.MeasureSys = obj.MeasureSys;
                 }
-
-                int amountTarget = json.DrinkAmount();
-                targetWaterIntake.Text = "Target : " + amountTarget + " mls";
-            }
+            }//catch
+            
         }
 
         //protected override void OnAppearing()
@@ -124,7 +116,7 @@ namespace waterAppDev2018
         {
             MeasurementSystem target = new MeasurementSystem();
             amountTarget = target.DrinkAmount();
-            targetWaterIntake.Text = "Target : " + amountTarget + " mls";
+            //targetWaterIntake.Text = "Target : " + amountTarget + " mls";
 
             //int guideDrank = target.TargetLine();
             //guide.Text = "Guide amount drunk : " + guideDrank + " mls";
