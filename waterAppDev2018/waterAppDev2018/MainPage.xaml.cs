@@ -17,7 +17,7 @@ namespace waterAppDev2018
         int totalDrank = 0;
         int amountTarget;
         private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
-        List<JsonToObject> jsonToObjects;
+        public List<JsonToObject> jsonToObjects;
 
 
         public MainPage()
@@ -58,7 +58,7 @@ namespace waterAppDev2018
 
                 
             }
-            catch
+            catch(FileNotFoundException)
             {
                 // on error reading local file, use default file
 

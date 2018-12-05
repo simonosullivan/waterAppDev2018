@@ -20,11 +20,11 @@
             
             <Label Text="Wake/Sleep Time" FontSize="Medium"/>
             <Label Text="Wake Up Time"/>
-            <TimePicker x:Name="wakeTime"
-                            BindingContextChanged="WakeTime_BindingContextChanged"/>
+            <Entry x:Name="wakeTime"
+                           Placeholder="0800 -> 08:00 am"/>
             <Label Text="Sleep Time"/>
-            <TimePicker x:Name="SleepTime"
-                        BindingContextChanged="SleepTime_BindingContextChanged"/>
+            <Entry x:Name="SleepTime"
+                        Placeholder="2300 -> 23:00 pm"/>
 
             <Button x:Name="SubmitButton" Text="Submit" TextColor="Green" Clicked="SubmitButton_Clicked"/>
         </StackLayout>

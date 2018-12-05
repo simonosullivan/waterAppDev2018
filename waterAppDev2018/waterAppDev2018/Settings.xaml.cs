@@ -1,6 +1,8 @@
-﻿using SQLite;
+﻿using Newtonsoft.Json;
+using SQLite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +16,19 @@ namespace waterAppDev2018
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Settings : ContentPage
 	{
-        public int pickedWeight;
-        public int wakeUptime;
-        public int bedTime;
-        public string measureSys;
+        public int Weight;
+        public int WakeUptime;
+        public int BedTime;
+        public string MeasureSys;
+        private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
+        List<JsonToObject> jsonToObjects = new List<JsonToObject>();
 
         public Settings ()
 		{
 			InitializeComponent ();
             WeightPickerOptions();
             MeasurementSystem();
+
 
         }
 
@@ -38,29 +43,17 @@ namespace waterAppDev2018
             int whichMeasureSys = (int)(MeasurementPicker.SelectedIndex);
             switch (whichMeasureSys)
             {
-                case 1:
-                    measureSys = "Metric";
+                case 0:
+                    MeasureSys = "Metric";
                     break;
-                case 2:
-                    measureSys = "Imperial";
+                case 1:
+                    MeasureSys = "Imperial";
                     break;
                 default:
-                    measureSys = "Metric";
+                    MeasureSys = "Metric";
                     break;
             }
 
-        }
-
-        private void WakeTime_BindingContextChanged(object sender, EventArgs e)
-        {
-            string time = (wakeTime.ToString());
-            wakeUptime = Convert.ToInt32(time);
-        }
-
-        private void SleepTime_BindingContextChanged(object sender, EventArgs e)
-        {
-            string time = (SleepTime.ToString());
-            bedTime = Convert.ToInt32(time);
         }
 
         private void WeightPickerOptions()
@@ -82,33 +75,42 @@ namespace waterAppDev2018
 
         private void WeightPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pickedWeight = (int)(WeightPicker.SelectedIndex)+1;
+            Weight = (int)(WeightPicker.SelectedIndex)+1;
         }
 
         private void SubmitButton_Clicked(object sender, EventArgs e)
         {
-        //    DbClass dbClass = new DbClass()
-        //    {
-        //        DbWeight = pickedWeight
-        //        //DbMeasureSys = measureSys,
-        //        //DbWakeUp = wakeUptime,
-        //        //DbBedTime = bedTime
-        //    };
+            string wake = wakeTime.Text;
+            string sleep = SleepTime.Text;
+            this.WakeUptime = Convert.ToInt32(wake);
+            this.BedTime = Convert.ToInt32(sleep);
 
-        //    using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-        //    {
-        //        conn.CreateTable<DbClass>();
-        //        int rows = conn.Insert(dbClass);
-
-
-        //        if (rows > 0)
-        //            DisplayAlert("Success", "Succesfully saved inputs", "Ok");
-        //        else
-        //            DisplayAlert("Failed", "Failed to save inputs", "Ok");
-        //    }
+            SaveJsonDetails();
+        
 
             Navigation.PushAsync(new MainPage());
 
         }
+
+        private void SaveJsonDetails()
+        {
+            JsonToObject @object = new JsonToObject(this.Weight, this.WakeUptime,
+                this.BedTime, this.MeasureSys);
+            jsonToObjects.Add(@object);
+
+            // write the list to a local file
+            string path = Environment.GetFolderPath(
+                Environment.SpecialFolder.LocalApplicationData);
+            string filename = Path.Combine(path, JSON_FILENAME);
+            // use a stream writer to write the text out to file
+            using (var streamWriter = new StreamWriter(filename, false))
+            {
+                // serialise the dogs list to a string using the jsonconvert library 
+                string jsonText = JsonConvert.SerializeObject(jsonToObjects);
+                streamWriter.WriteLine(jsonText);
+            }
+        }
+
+        
     }
 }
