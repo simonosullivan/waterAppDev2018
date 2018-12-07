@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "waterAppDev2018.Android", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "waterAppDev2018.UWP", "waterAppDev2018\waterAppDev2018.UWP\waterAppDev2018.UWP.csproj", "{3E3D1CFC-AE60-4C44-AE14-7FC2791D7D77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "waterAppDev2018", "waterAppDev2018\waterAppDev2018\waterAppDev2018.csproj", "{4AB53038-F7B7-4984-AFC9-33815011B8AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "waterAppDev2018", "waterAppDev2018\waterAppDev2018\waterAppDev2018.csproj", "{4AB53038-F7B7-4984-AFC9-33815011B8AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -25,7 +25,7 @@ namespace waterAppDev2018.Droid
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string fullPath = Path.Combine(folderPath, dbName);
             
-            LoadApplication(new App(fullPath));
+            LoadApplication(new App());
         }
     }
 }

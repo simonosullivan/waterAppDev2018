@@ -10,6 +10,8 @@ namespace waterAppDev2018
         public int WakeUpTime;
         public int SleepTime;
         public string MeasureSys;
+        private double varTargetLine;
+        int amountTarget;
 
         public JsonToObject()
         {
@@ -28,7 +30,7 @@ namespace waterAppDev2018
 
         public int DrinkAmount(int weight)
         {
-            int amountTarget;
+           
             if (weight >= 90)
             {
                 amountTarget = 2800;
@@ -45,6 +47,13 @@ namespace waterAppDev2018
 
             //DrinkMeter();
             return amountTarget;
+        }
+
+        public double TargetLine(double dailyWaterAmt)
+        {
+            double awake = (SleepTime/100) - (WakeUpTime/100);
+            this.varTargetLine = dailyWaterAmt / awake;
+            return this.varTargetLine;
         }
     }
 }

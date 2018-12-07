@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:waterAppDev2018"
-             x:Class="waterAppDev2018.MainPage">
+             x:Class="waterAppDev2018.MainPage"
+             BackgroundColor="LightGreen">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Drink-Up"
@@ -23,16 +24,11 @@
                      Clicked="ToolbarItem_Clicked_1"/>
     </ContentPage.ToolbarItems>
 
-    <!--<ListView x:Name="listviewDB">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding DbWeight}" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
+  
     
     
-       <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+       <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" 
+                    BackgroundColor="LightSeaGreen">
         
             <Label x:Name="targetWaterIntake" Text="Target :" FontSize="Large"/>
         <Label x:Name="guide" Text="Guide amount drunk : " FontSize="Micro"/>
@@ -41,15 +37,13 @@
 
             <Image x:Name="WaterGlass" Aspect="AspectFit"/>
 
-        <Entry x:Name="mlsEntry" Placeholder="mls"/>
-        <Button Text="add mls" x:Name="addMlsButton" Clicked="addMlsButton_Clicked"/>
+        <Entry x:Name="mlsEntry" Placeholder="mls" Keyboard="Numeric"/>
+        <Button Text="add mls" x:Name="addMlsButton" Clicked="addMlsButton_Clicked" />
            
-        <Button x:Name="AddQuantityButton" 
-                    Text="Quantity" 
-                    Clicked="AddQuantityButton_Clicked"/>
+        
 
         
-        <Label x:Name="lblShow" Text="json" />
+        
 
     </StackLayout>
 

@@ -18,11 +18,13 @@ namespace waterAppDev2018
         int amountTarget;
         private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
         public List<JsonToObject> jsonToObjects;
+        //bool firstLaunch = false;
 
 
         public MainPage()
         {
             InitializeComponent();
+
             ReadFromJson();
             //SetupImages();
             //DrinkMeter();
@@ -53,6 +55,8 @@ namespace waterAppDev2018
                     targetWaterIntake.Text = "Target : " + amountTarget + " mls";
                     objs.WakeUpTime = obj.WakeUpTime;
                     objs.SleepTime = obj.SleepTime;
+                    double guidePerHour = objs.TargetLine(amountTarget);
+                    guide.Text = "Guide amount to drink : " + guidePerHour + " mls p/hour";
                     objs.MeasureSys = obj.MeasureSys;
                 }
 
@@ -60,6 +64,10 @@ namespace waterAppDev2018
             }
             catch(FileNotFoundException)
             {
+                // on error of finding local file, Settings Page 
+                // must be loaded for configuration 
+                Navigation.PushAsync(new Settings());
+
                 // on error reading local file, use default file
 
                 // need a link to the assembly (dll) to get the file
@@ -81,31 +89,15 @@ namespace waterAppDev2018
                     targetWaterIntake.Text = "Target : " + amountTarget + " mls";
                     json.WakeUpTime = obj.WakeUpTime;
                     json.SleepTime = obj.SleepTime;
+                    double guidePerHour = json.TargetLine(amountTarget);
+                    guide.Text = "Guide amount to drink : " +guidePerHour+" mls p/hour";
                     json.MeasureSys = obj.MeasureSys;
                 }
             }//catch
             
         }
 
-        //protected override void OnAppearing()
-        //{
-        //    base.OnAppearing();
-
-
-
-        //    using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
-        //    {
-
-        //        conn.CreateTable<DbClass>();
-        //        var readDB = conn.Table<DbClass>().ToList();
-        //        var weight = readDB[readDB.ToList().Count- 1];
-
-        //        Console.WriteLine(weight.ToString());
-
-
-        //    }
-
-        //}
+        
 
         private void AddQuantityButton_Clicked(object sender, EventArgs e)
         {
@@ -149,10 +141,11 @@ namespace waterAppDev2018
         }
 
         private void addMlsButton_Clicked(object sender, EventArgs e)
-        {
+        { 
             int drunk = AddWater();
             totalDrank += drunk;
             drinkMeter.Text = "Drunk : " + totalDrank + "  mls";
+            mlsEntry.Text = String.Empty;
         }
 
         public int AddWater()

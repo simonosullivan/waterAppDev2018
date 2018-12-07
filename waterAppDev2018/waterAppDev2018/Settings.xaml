@@ -1,32 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="waterAppDev2018.Settings">
+             x:Class="waterAppDev2018.Settings"
+             BackgroundColor="LightGreen">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
-            <Label Text="Settings"/>
-            
-            <StackLayout Orientation="Horizontal" >
-                <Label Text="Weight" FontSize="Large"/>
-                <Picker x:Name="WeightPicker" 
-                    SelectedIndexChanged="WeightPicker_SelectedIndexChanged"/>
-                
-                
-                
-                <Label Text="Measurement System"/>
-                <Picker x:Name="MeasurementPicker"
-                        SelectedIndexChanged="MeasurementPicker_SelectedIndexChanged"/>
-            </StackLayout>
-            
-            <Label Text="Wake/Sleep Time" FontSize="Medium"/>
-            <Label Text="Wake Up Time"/>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand"
+                     >
+            <Label Text="Settings" FontSize="Large"/>
+            <Label Text="Please fill out to determine the amount you need to drink in a day"
+                   FontSize="Micro"/>
+
+            <Label Text="Weight" FontSize="Medium"/>
+            <Picker x:Name="WeightPicker" 
+                SelectedIndexChanged="WeightPicker_SelectedIndexChanged"/>
+
+            <Label Text="Measurement System" FontSize="Medium"/>
+            <Picker x:Name="MeasurementPicker"
+                    SelectedIndexChanged="MeasurementPicker_SelectedIndexChanged"/>
+
+            <Label Text="Wake/Sleep Time" FontSize="Medium" TextColor="Blue" 
+                   Margin="10" HorizontalOptions="Center"/>
+            <Label Text="Wake Up Time" FontSize="Medium"/>
             <Entry x:Name="wakeTime"
                            Placeholder="0800 -> 08:00 am"/>
-            <Label Text="Sleep Time"/>
-            <Entry x:Name="SleepTime"
+            <Label Text="Sleep Time" FontSize="Medium"/>
+            <Entry x:Name="SleepTime" 
                         Placeholder="2300 -> 23:00 pm"/>
 
-            <Button x:Name="SubmitButton" Text="Submit" TextColor="Green" Clicked="SubmitButton_Clicked"/>
+            <Button x:Name="SubmitButton" Text="Submit" TextColor="DarkGreen"
+                    Clicked="SubmitButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
