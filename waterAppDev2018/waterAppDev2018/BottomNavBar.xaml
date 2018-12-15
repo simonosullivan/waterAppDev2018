@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="waterAppDev2018.BottomNavBar"
+             BackgroundColor="Aqua">
+    
+    <Grid ColumnSpacing="0" RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="44"/>
+        </Grid.RowDefinitions>
+        <ContentView x:Name="PlaceHolder" Grid.Row="0"/>
+        <BoxView BackgroundColor="Aquamarine" Grid.Row="1"/>
+
+        <!--this will be my tab bar-->
+        <Grid ColumnSpacing="0" RowSpacing="0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--this will be my tab items-->
+            <StackLayout Spacing="0" Grid.Column="0" BackgroundColor="White">
+                <Image x:Name="HomeIcon"
+                    HeightRequest="30"/>
+                <Label Text="Home" FontSize="12"
+                       HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Home_Tapped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+
+
+            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="White">
+                <Image x:Name="ModificationsIcon"
+                    HeightRequest="30" />
+                <Label Text="Modifications" FontSize="12"
+                       HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Modifications_Tapped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="White">
+                <Image x:Name="SettingsIcon"
+                    HeightRequest="30" />
+                <Label Text="Settings" FontSize="12"
+                       HorizontalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Settings_Tapped"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

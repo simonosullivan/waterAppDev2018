@@ -4,47 +4,23 @@
              xmlns:local="clr-namespace:waterAppDev2018"
              x:Class="waterAppDev2018.MainPage"
              BackgroundColor="LightGreen">
-    
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Drink-Up"
-                     Priority="0"
-                     Order="Primary"
-                     
-                     Clicked="ToolbarItem_Clicked"/>
-        <ToolbarItem x:Name="Settings"
-                     Text="Settings"
-                     Priority="1"
-                     Order="Primary"
-                     
-                     Clicked="Settings_Clicked"/>
-        <ToolbarItem Text="Modifications"
-                     Priority="2"
-                     Order="Primary"
-                     
-                     Clicked="ToolbarItem_Clicked_1"/>
-    </ContentPage.ToolbarItems>
 
-  
-    
-    
-       <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" 
-                    BackgroundColor="LightSeaGreen">
-        
-            <Label x:Name="targetWaterIntake" Text="Target :" FontSize="Large"/>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" >
+
+        <Label x:Name="targetWaterIntake" Text="Target :" FontSize="Large"/>
         <Label x:Name="guide" Text="Guide amount drunk : " FontSize="Micro"/>
         <Label x:Name="drinkMeter" Text="Have you drank water yet ?" FontSize="Medium"/>
 
 
-            <Image x:Name="WaterGlass" Aspect="AspectFit"/>
+        <Image x:Name="WaterGlass" Aspect="AspectFit"/>
 
         <Entry x:Name="mlsEntry" Placeholder="mls" Keyboard="Numeric"/>
         <Button Text="add mls" x:Name="addMlsButton" Clicked="addMlsButton_Clicked" />
-           
-        
-
-        
-        
-
     </StackLayout>
+
+
+
+    
+
 
 </ContentPage>

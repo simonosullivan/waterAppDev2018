@@ -10,11 +10,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\homeIcon.jpg" />
+    <None Remove="Assets\Images\icons8-compose-24.png" />
+    <None Remove="Assets\Images\icons8-home-page-24.png" />
+    <None Remove="Assets\Images\icons8-settings-24.png" />
+    <None Remove="Assets\Images\modificationsIcon.png" />
+    <None Remove="Assets\Images\settingsIcon.png" />
     <None Remove="Assets\WaterGlass.jpg" />
     <None Remove="Model\LocalStorage.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\Images\homeIcon.jpg" />
+    <EmbeddedResource Include="Assets\Images\icons8-compose-24.png" />
+    <EmbeddedResource Include="Assets\Images\icons8-home-page-24.png" />
+    <EmbeddedResource Include="Assets\Images\icons8-settings-24.png" />
+    <EmbeddedResource Include="Assets\Images\modificationsIcon.png" />
+    <EmbeddedResource Include="Assets\Images\settingsIcon.png" />
     <EmbeddedResource Include="Assets\Images\WaterGlass.jpg" />
     <EmbeddedResource Include="Model\LocalStorage.txt" />
   </ItemGroup>
@@ -22,11 +34,15 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+    <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF" Version="1.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="AddWaterQuantity.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="BottomNavBar.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Modifications.xaml">

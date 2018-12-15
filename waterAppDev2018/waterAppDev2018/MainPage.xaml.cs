@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BottomBar.XamarinForms;
+using Newtonsoft.Json;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace waterAppDev2018
     public partial class MainPage : ContentPage
     {
         int totalDrank = 0;
-        int amountTarget;
+        public int amountTarget;
         private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
         public List<JsonToObject> jsonToObjects;
         //bool firstLaunch = false;
@@ -24,22 +25,23 @@ namespace waterAppDev2018
         public MainPage()
         {
             InitializeComponent();
-
+            
             ReadFromJson();
             //SetupImages();
             //DrinkMeter();
-            
+
 
         }
 
         private void ReadFromJson()
         {
-            try { 
+            try
+            {
                 // Read the list from a local file
                 string path = Environment.GetFolderPath(
                     Environment.SpecialFolder.LocalApplicationData);
                 string filename = Path.Combine(path, JSON_FILENAME);
-            
+
                 // use a stream reader to read the text out to file
                 using (var streamReader = new StreamReader(filename, false))
                 {
@@ -51,7 +53,7 @@ namespace waterAppDev2018
                 {
 
                     objs.Weight = obj.Weight;
-                    int amountTarget = objs.DrinkAmount(objs.Weight);
+                    amountTarget = objs.DrinkAmount(objs.Weight);
                     targetWaterIntake.Text = "Target : " + amountTarget + " mls";
                     objs.WakeUpTime = obj.WakeUpTime;
                     objs.SleepTime = obj.SleepTime;
@@ -60,9 +62,9 @@ namespace waterAppDev2018
                     objs.MeasureSys = obj.MeasureSys;
                 }
 
-                
+
             }
-            catch(FileNotFoundException)
+            catch (FileNotFoundException)
             {
                 // on error of finding local file, Settings Page 
                 // must be loaded for configuration 
@@ -83,41 +85,41 @@ namespace waterAppDev2018
 
                 JsonToObject json = new JsonToObject();
                 foreach (var obj in jsonToObjects)
-                { 
+                {
                     json.Weight = obj.Weight;
                     int amountTarget = json.DrinkAmount(json.Weight);
                     targetWaterIntake.Text = "Target : " + amountTarget + " mls";
                     json.WakeUpTime = obj.WakeUpTime;
                     json.SleepTime = obj.SleepTime;
                     double guidePerHour = json.TargetLine(amountTarget);
-                    guide.Text = "Guide amount to drink : " +guidePerHour+" mls p/hour";
+                    guide.Text = "Guide amount to drink : " + guidePerHour + " mls p/hour";
                     json.MeasureSys = obj.MeasureSys;
                 }
             }//catch
-            
+
         }
 
-        
+
 
         private void AddQuantityButton_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AddWaterQuantity());
         }
 
-        private void DrinkMeter()
-        {
-            MeasurementSystem target = new MeasurementSystem();
-            amountTarget = target.DrinkAmount();
-            //targetWaterIntake.Text = "Target : " + amountTarget + " mls";
+        //private void DrinkMeter()
+        //{
+        //    //MeasurementSystem target = new MeasurementSystem();
+        //    //amountTarget = target.DrinkAmount();
+        //    //targetWaterIntake.Text = "Target : " + amountTarget + " mls";
 
-            //int guideDrank = target.TargetLine();
-            //guide.Text = "Guide amount drunk : " + guideDrank + " mls";
+        //    //int guideDrank = target.TargetLine();
+        //    //guide.Text = "Guide amount drunk : " + guideDrank + " mls";
 
-            AddWaterQuantity water = new AddWaterQuantity();
-            int drank = water.AddWater();
-            drinkMeter.Text = "Drunk : " + drank + " mls";
+        //    AddWaterQuantity water = new AddWaterQuantity();
+        //    int drank = water.AddWater();
+        //    drinkMeter.Text = "Drunk : " + drank + " mls";
 
-        }
+        //}
 
         //private void SetupImages()
         //{
@@ -125,23 +127,10 @@ namespace waterAppDev2018
         //    WaterGlass.Source = ImageSource.FromResource("waterAppDev2018.Assets.Images.WaterGlass.jpg", assembly);
         //}
 
-        private void Settings_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Settings());
-        }
-
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Weight());
-        }
-
-        private void ToolbarItem_Clicked_1(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Modifications());
-        }
+       
 
         private void addMlsButton_Clicked(object sender, EventArgs e)
-        { 
+        {
             int drunk = AddWater();
             totalDrank += drunk;
             drinkMeter.Text = "Drunk : " + totalDrank + "  mls";

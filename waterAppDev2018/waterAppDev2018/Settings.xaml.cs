@@ -20,6 +20,8 @@ namespace waterAppDev2018
         public int WakeUptime;
         public int BedTime;
         public string MeasureSys;
+        public string hotToday="";
+        public string sportsToday= "";
         private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
         List<JsonToObject> jsonToObjects = new List<JsonToObject>();
 
@@ -86,10 +88,6 @@ namespace waterAppDev2018
             this.BedTime = Convert.ToInt32(sleep);
 
             SaveJsonDetails();
-        
-
-            Navigation.PushAsync(new MainPage());
-
         }
 
         private void SaveJsonDetails()
@@ -109,6 +107,7 @@ namespace waterAppDev2018
                 string jsonText = JsonConvert.SerializeObject(jsonToObjects);
                 streamWriter.WriteLine(jsonText);
             }
+            DisplayAlert("Success", "Succesfully saved to local storage", "Ok");
         }
 
         

@@ -3,10 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="waterAppDev2018.Modifications">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical" >
+            <Label Text="Modifications" FontSize="30"/>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" 
+                         HorizontalOptions="Center">
+                <Label Text="Did you play sports today ?"/>
+                <Picker x:Name="sports" SelectedIndexChanged="sports_SelectedIndexChanged"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center"
+                         HorizontalOptions="Center">
+                <Label Text="Do you have hot weather ?"/>
+                <Picker x:Name="hotWeather" SelectedIndexChanged="hotWeather_SelectedIndexChanged"/>
+            </StackLayout>
+            <Button x:Name="Save" Text="Save" Clicked="Save_Clicked"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

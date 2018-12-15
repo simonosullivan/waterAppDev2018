@@ -10,6 +10,8 @@ namespace waterAppDev2018
         public int WakeUpTime;
         public int SleepTime;
         public string MeasureSys;
+        public string sportsToday;
+        public string hotToday;
         private double varTargetLine;
         int amountTarget;
 
@@ -27,6 +29,17 @@ namespace waterAppDev2018
             this.SleepTime = sleepTime;
             this.MeasureSys = measureSys;
         }
+
+        //public JsonToObject(int weight, int wakeUpTime, int sleepTime, 
+        //    string measureSys, string sportsToday, string hotToday)
+        //{
+        //    this.Weight = weight;
+        //    this.WakeUpTime = wakeUpTime;
+        //    this.SleepTime = sleepTime;
+        //    this.MeasureSys = measureSys;
+        //    this.sportsToday = sportsToday;
+        //    this.hotToday = hotToday;
+        //}
 
         public int DrinkAmount(int weight)
         {
