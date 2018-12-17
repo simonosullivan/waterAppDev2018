@@ -30,8 +30,8 @@ namespace waterAppDev2018
             var assembly = typeof(MainPage);
             HomeIcon.Source = ImageSource.FromResource(
                 "waterAppDev2018.Assets.Images.icons8-home-page-24.png", assembly);
-            ModificationsIcon.Source = ImageSource.FromResource(
-                "waterAppDev2018.Assets.Images.icons8-compose-24.png", assembly);
+            //ModificationsIcon.Source = ImageSource.FromResource(
+            //    "waterAppDev2018.Assets.Images.icons8-compose-24.png", assembly);
             SettingsIcon.Source = ImageSource.FromResource(
                 "waterAppDev2018.Assets.Images.icons8-settings-24.png", assembly);
         }

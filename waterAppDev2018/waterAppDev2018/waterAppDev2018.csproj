@@ -18,6 +18,7 @@
     <None Remove="Assets\Images\settingsIcon.png" />
     <None Remove="Assets\WaterGlass.jpg" />
     <None Remove="Model\LocalStorage.txt" />
+    <None Remove="Model\WaterStore.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +30,7 @@
     <EmbeddedResource Include="Assets\Images\settingsIcon.png" />
     <EmbeddedResource Include="Assets\Images\WaterGlass.jpg" />
     <EmbeddedResource Include="Model\LocalStorage.txt" />
+    <EmbeddedResource Include="Model\WaterStore.txt" />
   </ItemGroup>
 
   <ItemGroup>

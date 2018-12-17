@@ -16,6 +16,8 @@
 
         <Entry x:Name="mlsEntry" Placeholder="mls" Keyboard="Numeric"/>
         <Button Text="add mls" x:Name="addMlsButton" Clicked="addMlsButton_Clicked" />
+
+       
     </StackLayout>
 
 

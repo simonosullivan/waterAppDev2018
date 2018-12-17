@@ -18,21 +18,128 @@ namespace waterAppDev2018
         int totalDrank = 0;
         public int amountTarget;
         private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
-        public List<JsonToObject> jsonToObjects;
+        public List<RecordWaterDay> record = new List<RecordWaterDay>();
+        public List<JsonToObject> jsonToObjects = new List<JsonToObject>();
+        public List<JsonToObject> jsonRecordAmountDrank = new List<JsonToObject>();
+        public int date;
+        public int day=0;
+        public int month=0;
         //bool firstLaunch = false;
 
 
         public MainPage()
         {
             InitializeComponent();
+
+            string d = DateTime.Now.ToString("dd");
+            string m = DateTime.Now.ToString("MM");
+            int day = Convert.ToInt32(d);
+            int month = Convert.ToInt32(m);
+            ReadWaterFile();
+            CompareDate(day, month);
             
+
+
             ReadFromJson();
+
             //SetupImages();
             //DrinkMeter();
 
 
         }
 
+        private void ReadWaterFile()
+        {
+            try
+            {
+                // Read the list from water file
+                string path = Environment.GetFolderPath(
+                    Environment.SpecialFolder.LocalApplicationData);
+                string filename = Path.Combine(path, "RecordWater_Day.txt");
+
+                // use a stream reader to read the text out to file
+                using (var streamReader = new StreamReader(filename, false))
+                {
+                    string jsonText = streamReader.ReadToEnd();
+                    record = JsonConvert.DeserializeObject<List<RecordWaterDay>>(jsonText);
+                }
+                RecordWaterDay objs = new RecordWaterDay();
+                foreach (var obj in record)
+                {
+
+                    this.day = obj.day;
+                    this.month = obj.month;
+                    this.totalDrank = obj.totalDrank;
+                    //drinkMeter.Text = "Drunk : " + this.totalDrank;
+                
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                // need a link to the assembly (dll) to get the file
+                var assembly = IntrospectionExtensions.GetTypeInfo(typeof(MainPage)).Assembly;
+                // create a stream to access the file
+                Stream stream = assembly.GetManifestResourceStream(
+                                "waterAppDev2018.Model.WaterStore.txt");
+                using (var reader = new StreamReader(stream))
+                {
+                    string jsonText = reader.ReadToEnd();
+                    record = JsonConvert.DeserializeObject<List<RecordWaterDay>>(jsonText);
+                }
+
+                RecordWaterDay wd = new RecordWaterDay();
+                foreach (var obj in record)
+                {
+                    this.day = obj.day; // all 0
+                    this.month = obj.month; 
+                    this.totalDrank = obj.totalDrank;
+                }
+            }
+            
+        }
+
+
+        private void CompareDate(int day, int month)
+        {
+            if (day > this.day || month > this.month)
+            {
+                // new object for new day 
+                this.totalDrank = 0;
+                drinkMeter.Text = "Have you drunk any water yet?";
+                this.day = day;
+                this.month = month;
+
+            }
+            else if (day == this.day)
+            {
+                // same day, load what drank earlier today
+                drinkMeter.Text = "Drunk : " + this.totalDrank;
+            }
+        }
+
+        private void WriteWaterFile()
+        {
+            RecordWaterDay recordWater = new RecordWaterDay();
+            recordWater.day = this.day;
+            recordWater.month = this.month;
+            recordWater.totalDrank = this.totalDrank;
+            record.Add(recordWater);
+
+            // write the list to a local file
+            string path = Environment.GetFolderPath(
+                Environment.SpecialFolder.LocalApplicationData);
+            string filename = Path.Combine(path, "RecordWater_Day.txt");
+            // use a stream writer to write the text out to file
+            using (var streamWriter = new StreamWriter(filename, false))
+            {
+                // serialise the dogs list to a string using the jsonconvert library 
+                string jsonText = JsonConvert.SerializeObject(record);
+                streamWriter.WriteLine(jsonText);
+            }
+        }
+
+        
+        
         private void ReadFromJson()
         {
             try
@@ -99,27 +206,7 @@ namespace waterAppDev2018
 
         }
 
-
-
-        private void AddQuantityButton_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new AddWaterQuantity());
-        }
-
-        //private void DrinkMeter()
-        //{
-        //    //MeasurementSystem target = new MeasurementSystem();
-        //    //amountTarget = target.DrinkAmount();
-        //    //targetWaterIntake.Text = "Target : " + amountTarget + " mls";
-
-        //    //int guideDrank = target.TargetLine();
-        //    //guide.Text = "Guide amount drunk : " + guideDrank + " mls";
-
-        //    AddWaterQuantity water = new AddWaterQuantity();
-        //    int drank = water.AddWater();
-        //    drinkMeter.Text = "Drunk : " + drank + " mls";
-
-        //}
+        
 
         //private void SetupImages()
         //{
@@ -135,6 +222,8 @@ namespace waterAppDev2018
             totalDrank += drunk;
             drinkMeter.Text = "Drunk : " + totalDrank + "  mls";
             mlsEntry.Text = String.Empty;
+
+            WriteWaterFile();
         }
 
         public int AddWater()

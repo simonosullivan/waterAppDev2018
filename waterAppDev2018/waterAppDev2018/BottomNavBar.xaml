@@ -18,7 +18,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!--this will be my tab items-->
@@ -34,7 +33,7 @@
 
 
 
-            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="White">
+            <!--<StackLayout Spacing="0" Grid.Column="1" BackgroundColor="White">
                 <Image x:Name="ModificationsIcon"
                     HeightRequest="30" />
                 <Label Text="Modifications" FontSize="12"
@@ -42,9 +41,9 @@
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="Modifications_Tapped"/>
                 </StackLayout.GestureRecognizers>
-            </StackLayout>
+            </StackLayout>-->
 
-            <StackLayout Spacing="0" Grid.Column="2" BackgroundColor="White">
+            <StackLayout Spacing="0" Grid.Column="1" BackgroundColor="White">
                 <Image x:Name="SettingsIcon"
                     HeightRequest="30" />
                 <Label Text="Settings" FontSize="12"
