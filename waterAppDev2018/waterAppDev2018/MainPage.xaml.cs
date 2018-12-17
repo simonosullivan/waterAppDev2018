@@ -24,6 +24,7 @@ namespace waterAppDev2018
         public int date;
         public int day=0;
         public int month=0;
+        public int year = 0;
         //bool firstLaunch = false;
 
 
@@ -33,10 +34,12 @@ namespace waterAppDev2018
 
             string d = DateTime.Now.ToString("dd");
             string m = DateTime.Now.ToString("MM");
+            string y = DateTime.Now.ToString("yyyy");
             int day = Convert.ToInt32(d);
             int month = Convert.ToInt32(m);
+            int year = Convert.ToInt32(y);
             ReadWaterFile();
-            CompareDate(day, month);
+            CompareDate(day, month, year);
             
 
 
@@ -99,15 +102,16 @@ namespace waterAppDev2018
         }
 
 
-        private void CompareDate(int day, int month)
+        private void CompareDate(int day, int month, int year)
         {
-            if (day > this.day || month > this.month)
+            if (day > this.day || month > this.month || year > this.year)
             {
                 // new object for new day 
                 this.totalDrank = 0;
                 drinkMeter.Text = "Have you drunk any water yet?";
                 this.day = day;
                 this.month = month;
+                this.year = year;
 
             }
             else if (day == this.day)
