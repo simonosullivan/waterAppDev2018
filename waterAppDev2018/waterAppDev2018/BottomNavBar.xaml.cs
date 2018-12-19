@@ -43,15 +43,6 @@ namespace waterAppDev2018
 
         }
 
-
-
-        private void Modifications_Tapped(object sender, EventArgs e)
-        {
-            var page = new Modifications();
-            PlaceHolder.Content = page.Content;
-
-        }
-
         private void Settings_Tapped(object sender, EventArgs e)
         {
             var page = new Settings();

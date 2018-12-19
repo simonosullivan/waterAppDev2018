@@ -20,8 +20,6 @@ namespace waterAppDev2018
         public int WakeUptime;
         public int BedTime;
         public string MeasureSys;
-        public string hotToday="";
-        public string sportsToday= "";
         private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
         List<JsonToObject> jsonToObjects = new List<JsonToObject>();
 

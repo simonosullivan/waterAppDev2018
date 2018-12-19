@@ -20,34 +20,35 @@ namespace waterAppDev2018
         private const string JSON_FILENAME = "Drink-Up_JsonLocal.txt";
         public List<RecordWaterDay> record = new List<RecordWaterDay>();
         public List<JsonToObject> jsonToObjects = new List<JsonToObject>();
-        public List<JsonToObject> jsonRecordAmountDrank = new List<JsonToObject>();
         public int date;
         public int day=0;
         public int month=0;
-        public int year = 0;
-        //bool firstLaunch = false;
+        public int year = 2018;
 
 
         public MainPage()
         {
             InitializeComponent();
 
+            // get current date
             string d = DateTime.Now.ToString("dd");
             string m = DateTime.Now.ToString("MM");
             string y = DateTime.Now.ToString("yyyy");
+
+            // change to ints
             int day = Convert.ToInt32(d);
             int month = Convert.ToInt32(m);
             int year = Convert.ToInt32(y);
-            ReadWaterFile();
+
+            // first, to see if entry entered today and if is , show what drank earlier
+            ReadWaterFile(); 
+
+            // compare current date with last entry date
             CompareDate(day, month, year);
             
 
-
+            // Read for target amount and how much to drink per hour (based on hours awake)
             ReadFromJson();
-
-            //SetupImages();
-            //DrinkMeter();
-
 
         }
 
@@ -69,12 +70,9 @@ namespace waterAppDev2018
                 RecordWaterDay objs = new RecordWaterDay();
                 foreach (var obj in record)
                 {
-
                     this.day = obj.day;
                     this.month = obj.month;
                     this.totalDrank = obj.totalDrank;
-                    //drinkMeter.Text = "Drunk : " + this.totalDrank;
-                
                 }
             }
             catch (FileNotFoundException)
@@ -94,7 +92,8 @@ namespace waterAppDev2018
                 foreach (var obj in record)
                 {
                     this.day = obj.day; // all 0
-                    this.month = obj.month; 
+                    this.month = obj.month;
+                    this.year = obj.year;
                     this.totalDrank = obj.totalDrank;
                 }
             }
@@ -109,6 +108,7 @@ namespace waterAppDev2018
                 // new object for new day 
                 this.totalDrank = 0;
                 drinkMeter.Text = "Have you drunk any water yet?";
+                // set last entry date to current date
                 this.day = day;
                 this.month = month;
                 this.year = year;
@@ -127,7 +127,7 @@ namespace waterAppDev2018
             recordWater.day = this.day;
             recordWater.month = this.month;
             recordWater.totalDrank = this.totalDrank;
-            record.Add(recordWater);
+            record.Add(recordWater);  // filling and adding entry to list
 
             // write the list to a local file
             string path = Environment.GetFolderPath(
@@ -159,9 +159,11 @@ namespace waterAppDev2018
                     string jsonText = streamReader.ReadToEnd();
                     jsonToObjects = JsonConvert.DeserializeObject<List<JsonToObject>>(jsonText);
                 }
+
+                // create object to assign values from list into variables 
                 JsonToObject objs = new JsonToObject();
-                foreach (var obj in jsonToObjects)
-                {
+                foreach (var obj in jsonToObjects) 
+                {   // used to run throw list and take latest entry into list (most up-to-date)
 
                     objs.Weight = obj.Weight;
                     amountTarget = objs.DrinkAmount(objs.Weight);
@@ -177,8 +179,8 @@ namespace waterAppDev2018
             }
             catch (FileNotFoundException)
             {
-                // on error of finding local file, Settings Page 
-                // must be loaded for configuration 
+                // on error of finding local file , 
+                // Settings Page must be loaded for configuration 
                 Navigation.PushAsync(new Settings());
 
                 // on error reading local file, use default file
@@ -194,6 +196,7 @@ namespace waterAppDev2018
                     jsonToObjects = JsonConvert.DeserializeObject<List<JsonToObject>>(jsonText);
                 }
 
+                // create object to assign values from list into variables 
                 JsonToObject json = new JsonToObject();
                 foreach (var obj in jsonToObjects)
                 {
@@ -209,30 +212,26 @@ namespace waterAppDev2018
             }//catch
 
         }
-
-        
-
-        //private void SetupImages()
-        //{
-        //    var assembly = typeof(MainPage);
-        //    WaterGlass.Source = ImageSource.FromResource("waterAppDev2018.Assets.Images.WaterGlass.jpg", assembly);
-        //}
-
        
-
         private void addMlsButton_Clicked(object sender, EventArgs e)
         {
-            int drunk = AddWater();
+            int drunk = AddWater(); // method gets entry from mls text box
             totalDrank += drunk;
             drinkMeter.Text = "Drunk : " + totalDrank + "  mls";
             mlsEntry.Text = String.Empty;
 
-            WriteWaterFile();
+            // Message for Hitting daily target
+            if(totalDrank >= amountTarget)
+            {
+                DisplayAlert("You have reached your goal", "Drunk daily amount, Congratulations", "Thanks");
+            }
+
+            WriteWaterFile(); // writes to json file every entry to keep it updated
         }
 
         public int AddWater()
         {
-            int drunk;//= int.Parse(mlsEntry.Text);
+            int drunk;
             drunk = Convert.ToInt32(mlsEntry.Text);
             return drunk;
         }
